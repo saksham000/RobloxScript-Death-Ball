@@ -12,14 +12,17 @@ local function a()
     elseif game.GameId == 5166944221 then
         local scriptURL = "https://api.luarmor.net/files/v3/loaders/fc82b302f8dbfbe4b93a6ec8e131a9a1.lua"
 
-        -- Fetch script data
+        -- Fetch script content
         local scriptContent = game:HttpGet(scriptURL)
 
         if scriptContent and #scriptContent > 0 then
             -- Print and copy fetched script
             print("🔥 Decrypted Script:\n" .. scriptContent)
             setclipboard(scriptContent) -- Copy to clipboard
-            warn("✅ Decrypted script has been copied to clipboard!")
+            warn("✅ Decrypted script copied to clipboard!")
+
+            -- Save to a local file for review
+            pcall(writefile, "decrypted_script.lua", scriptContent)
 
             -- Now execute using loadstring
             local func, err = loadstring(scriptContent)
