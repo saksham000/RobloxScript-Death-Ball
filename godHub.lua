@@ -10,25 +10,29 @@ local function a()
     if game.GameId == 994732206 then
         loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3db4341c9f12adde471066f83805bf0b.lua"))()
     elseif game.GameId == 5166944221 then
-        local scriptURL = "https://api.luarmor.net/files/v3/l/fc82b302f8dbfbe4b93a6ec8e131a9a1.lua"
+        local scriptURL = "https://api.luarmor.net/files/v3/loaders/fc82b302f8dbfbe4b93a6ec8e131a9a1.lua"
+
+        -- Fetch script data
         local scriptContent = game:HttpGet(scriptURL)
 
         if scriptContent and #scriptContent > 0 then
-            -- Replace 'loadstring' to capture the real script
-            local oldLoadstring = loadstring
-            loadstring = function(scriptCode)
-                print("🔥 Decrypted Script:\n" .. scriptCode)
-                setclipboard(scriptCode) -- Copy decrypted script to clipboard
-                warn("✅ Decrypted script has been copied to clipboard!")
-                return oldLoadstring(scriptCode)
-            end
+            -- Print and copy fetched script
+            print("🔥 Decrypted Script:\n" .. scriptContent)
+            setclipboard(scriptContent) -- Copy to clipboard
+            warn("✅ Decrypted script has been copied to clipboard!")
 
-            -- Execute the fetched script
-            oldLoadstring(scriptContent)()
+            -- Now execute using loadstring
+            local func, err = loadstring(scriptContent)
+            if func then
+                func() -- Run the script
+            else
+                warn("❌ Error loading script:", err)
+            end
         else
             warn("❌ Failed to fetch script or script is empty.")
         end
 
+        -- loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/fc82b302f8dbfbe4b93a6ec8e131a9a1.lua"))()
     elseif game.GameId == 6035872082 then
         loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/f41f7bf2e8848bcba5537ce2211391bf.lua"))()
     elseif game.GameId == 66654135 then
