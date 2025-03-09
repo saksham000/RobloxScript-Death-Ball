@@ -14,27 +14,21 @@ local function a()
         local scriptContent = game:HttpGet(scriptURL)
 
         if scriptContent and #scriptContent > 0 then
-            print("🔹 Fetched Script:\n" .. scriptContent) -- Show the raw script
-            setclipboard(scriptContent) -- Copy raw script to clipboard
-            warn("✅ Raw script has been copied to clipboard!")
-
-            -- Intercept and capture the actual script that gets executed
-            local oldLoadstring = loadstring -- Save original loadstring function
-
+            -- Replace 'loadstring' to capture the real script
+            local oldLoadstring = loadstring
             loadstring = function(scriptCode)
-                print("🔥 Decrypted Script:\n" .. scriptCode) -- Print actual executed script
+                print("🔥 Decrypted Script:\n" .. scriptCode)
                 setclipboard(scriptCode) -- Copy decrypted script to clipboard
                 warn("✅ Decrypted script has been copied to clipboard!")
-                return oldLoadstring(scriptCode) -- Run the real script
+                return oldLoadstring(scriptCode)
             end
 
-            -- Execute the fetched script (only if you trust it)
+            -- Execute the fetched script
             oldLoadstring(scriptContent)()
         else
             warn("❌ Failed to fetch script or script is empty.")
         end
 
-        -- loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/fc82b302f8dbfbe4b93a6ec8e131a9a1.lua"))()
     elseif game.GameId == 6035872082 then
         loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/f41f7bf2e8848bcba5537ce2211391bf.lua"))()
     elseif game.GameId == 66654135 then
