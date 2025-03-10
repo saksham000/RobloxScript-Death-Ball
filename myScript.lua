@@ -173,76 +173,41 @@ local LowFPSButton = MainTab:CreateButton({
 
 
 
--- AUTO DOGE
+-- AUTO Move Forward
 
-
-local AutoParryEnabled = false
-local ParryConnection = nil
-
-local function GetIncomingBall()
-    local player = game:GetService("Players").LocalPlayer
-    local character = player.Character
-    local humanoidRootPart = character and character:FindFirstChild("HumanoidRootPart")
-
-    if not humanoidRootPart then return nil end
-
-    local closestBall = nil
-    local closestDistance = math.huge
-
-    for _, object in pairs(workspace:GetChildren()) do
-        if object:IsA("BasePart") and object.Name:lower():find("ball") then  
-            local distance = (object.Position - humanoidRootPart.Position).Magnitude
-            local velocity = object.AssemblyLinearVelocity
-            local directionToPlayer = (humanoidRootPart.Position - object.Position).Unit
-
-            -- Only detect fast-moving balls coming towards the player
-            if velocity.Magnitude > 5 and directionToPlayer:Dot(velocity.Unit) > 0.8 then  
-                if distance < closestDistance then
-                    closestDistance = distance
-                    closestBall = object
-                end
-            end
-        end
-    end
-
-    return closestBall, closestDistance
-end
-
-local function AutoParry()
-    local player = game:GetService("Players").LocalPlayer
-    local character = player.Character
-    local sword = character and character:FindFirstChildWhichIsA("Tool") 
-
-    if not sword then return end
-
-    local ball, distance = GetIncomingBall()
-
-    if ball and distance < 6 then  -- Adjust for better timing
-        sword:Activate()  -- Auto parry the ball
-    end
-end
-
-local ParryButton = MainTab:CreateButton({
-    Name = "Auto Parry Ball",
+local AutoWalkButton = MainTab:CreateButton({
+    Name = "Move Forward (550 Steps)",
     Callback = function()
-        AutoParryEnabled = not AutoParryEnabled  
+        local player = game:GetService("Players").LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoid = character:FindFirstChildOfClass("Humanoid")
 
-        if AutoParryEnabled then
-            ParryConnection = game:GetService("RunService").Stepped:Connect(function()
-                AutoParry()
+        if humanoid then
+            local stepCount = 0
+            local maxSteps = 550  -- Fixed value of 550 steps
+            
+            local connection
+            connection = game:GetService("RunService").RenderStepped:Connect(function()
+                if stepCount < maxSteps then
+                    humanoid:Move(Vector3.new(0, 0, -1), true) -- Move forward one step
+                    stepCount = stepCount + 1
+                else
+                    connection:Disconnect() -- Stop moving after 550 steps
+                end
             end)
-        else
-            if ParryConnection then
-                ParryConnection:Disconnect()
-                ParryConnection = nil
-            end
-        end
 
-        -- Notify user
-        Rayfield:Notify({
-            Title = "Auto Parry Ball",
-            Content = "Auto Parry is now " .. (AutoParryEnabled and "Enabled" or "Disabled"),
-            Duration = 3,
-        })
+            -- Notify user
+            Rayfield:Notify({
+                Title = "Move Forward",
+                Content = "Moved 550 steps forward!",
+                Duration = 3,
+            })
+        else
+            Rayfield:Notify({
+                Title = "Error",
+                Content = "Character not found!",
+                Duration = 3,
+            })
+        end
     end
 })
