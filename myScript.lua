@@ -1,5 +1,5 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
--- wKfeCSIgOVYuvGzntOfyjriSJftgMqhX
+
 local Window = Rayfield:CreateWindow({
     Name = "❤ Death Ball Script By Saxam ❤",
     Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
@@ -700,78 +700,86 @@ end
 
 -- auto follow script
 
+-- -- ✅ Load Required Services
+-- local RunService = game:GetService("RunService")
+-- local UserInputService = game:GetService("UserInputService")
+-- local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
-local Window = Rayfield:CreateWindow({
-    Name = "❤ Death Ball Script By Saxam ❤",
-    LoadingTitle = "SAXAM's Script",
-    LoadingSubtitle = "by Saxam",
-    Theme = "Default"
-})
+-- -- ✅ Load Required Modules
+-- local Actions = require(ReplicatedStorage.Actions)
+-- local Values = require(ReplicatedStorage.Values)
 
-local MainTab = Window:CreateTab("🎇 Home", nil) 
-local MainSection = MainTab:CreateSection("Main")
+-- local Player = game:GetService("Players").LocalPlayer
+-- local Character = Player.Character or Player.CharacterAdded:Wait()
+-- local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
 
-Rayfield:Notify({
-    Title = "Script Loaded",
-    Content = "Auto-Hit Ready",
-    Duration = 3
-})
+-- local autoHitEnabled = false
+-- local cooldown = false
+-- local autoHitConnection -- Holds the loop connection
 
--- ✅ Dependencies
-local RunService = game:GetService("RunService")
-local Players = game:GetService("Players")
-local UserInputService = game:GetService("UserInputService")
-local VirtualInputManager = game:GetService("VirtualInputManager") -- Simulate keypress
-local Player = Players.LocalPlayer
-local Character = Player.Character or Player.CharacterAdded:Wait()
-local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+-- -- ✅ Auto-Hit Ball Function
+-- local function AutoHitBall()
+--     if autoHitEnabled and not cooldown then
+--         local Ball = game.Workspace:FindFirstChild("Ball") -- Find the Ball object
+--         if Ball and Values.CURRENT_BALL_ID:Get() and Values.PLAYER_ACTIVE_STATE:Get() then
+--             local distance = (Ball.Position - HumanoidRootPart.Position).Magnitude
+--             if distance < 10 then -- Adjust range if necessary
+--                 cooldown = true
+--                 Actions.PLAY_VISUAL_ABILITY:Fire("HitBall", Character, true, Values.CURRENT_BALL_ID:Get())
 
--- ✅ Auto-Hit Variables
-local autoHitEnabled = false
-local cooldown = false
+--                 -- Cooldown timer
+--                 task.delay(1, function() cooldown = false end)
+--             end
+--         end
+--     end
+-- end
 
--- ✅ Toggle Button for Auto-Hit
-local AutoHitButton = MainTab:CreateButton({
-    Name = "Toggle Auto-Hit Ball",
-    Callback = function()
-        autoHitEnabled = not autoHitEnabled -- Toggle auto-hit
+-- -- ✅ Start Auto-Hit Loop
+-- local function StartAutoHit()
+--     if autoHitConnection then autoHitConnection:Disconnect() end -- Prevent duplicate loops
 
-        Rayfield:Notify({
-            Title = "Auto-Hit Ball",
-            Content = "Auto-Hit is now " .. (autoHitEnabled and "Enabled" or "Disabled"),
-            Duration = 3
-        })
-    end
-})
+--     if autoHitEnabled then
+--         autoHitConnection = RunService.RenderStepped:Connect(AutoHitBall)
+--     end
+-- end
 
--- ✅ Function to Simulate Player Input
-local function PressHitKey()
-    -- Simulate pressing "F"
-    VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.F, false, game)
-    task.wait(0.1) -- Small delay to make it realistic
-    VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.F, false, game)
+-- -- ✅ Stop Auto-Hit Loop
+-- local function StopAutoHit()
+--     if autoHitConnection then
+--         autoHitConnection:Disconnect()
+--         autoHitConnection = nil
+--     end
+-- end
 
-    -- Simulate Left Mouse Click
-    VirtualInputManager:SendMouseButtonEvent(0, 0, 0, true, game, 1)
-    task.wait(0.1)
-    VirtualInputManager:SendMouseButtonEvent(0, 0, 0, false, game, 1)
-end
+-- -- ✅ Ensure Rayfield and MainTab Are Loaded First
+-- local AutoHitButton = MainTab:CreateButton({
+--     Name = "Toggle Auto-Hit Ball",
+--     Callback = function()
+--         autoHitEnabled = not autoHitEnabled -- Toggle auto-hit
 
--- ✅ Auto-Hit Ball Function
-local function AutoHitBall()
-    if autoHitEnabled and not cooldown then
-        local Ball = game.Workspace:FindFirstChild("Ball") -- Find the Ball object
-        if Ball then
-            local distance = (Ball.Position - HumanoidRootPart.Position).Magnitude
-            if distance < 10 then -- Adjust range if necessary
-                cooldown = true
-                PressHitKey() -- Simulate hitting the ball
-                task.delay(1.5, function() cooldown = false end) -- Cooldown (adjust as needed)
-            end
-        end
-    end
-end
+--         Rayfield:Notify({
+--             Title = "Auto-Hit Ball",
+--             Content = "Auto-Hit is now " .. (autoHitEnabled and "Enabled" or "Disabled"),
+--             Duration = 3
+--         })
 
--- ✅ Run Auto-Hit Continuously
-RunService.RenderStepped:Connect(AutoHitBall)
+--         if autoHitEnabled then
+--             StartAutoHit()
+--         else
+--             StopAutoHit()
+--         end
+--     end
+-- })
+
+-- -- ✅ Manually Trigger Hit When Player Presses F or Left Mouse Click
+-- UserInputService.InputBegan:Connect(function(input, gameProcessed)
+--     if not gameProcessed and (input.KeyCode == Enum.KeyCode.F or input.UserInputType == Enum.UserInputType.MouseButton1) then
+--         if not cooldown and Values.CURRENT_BALL_ID:Get() and Values.PLAYER_ACTIVE_STATE:Get() then
+--             cooldown = true
+--             Actions.PLAY_VISUAL_ABILITY:Fire("HitBall", Character, true, Values.CURRENT_BALL_ID:Get())
+
+--             -- Cooldown timer
+--             task.delay(1, function() cooldown = false end)
+--         end
+--     end
+-- end)
