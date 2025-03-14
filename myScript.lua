@@ -700,86 +700,47 @@ end
 
 -- auto follow script
 
--- -- ✅ Load Required Services
--- local RunService = game:GetService("RunService")
--- local UserInputService = game:GetService("UserInputService")
--- local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
--- -- ✅ Load Required Modules
--- local Actions = require(ReplicatedStorage.Actions)
--- local Values = require(ReplicatedStorage.Values)
+local following = false
 
--- local Player = game:GetService("Players").LocalPlayer
--- local Character = Player.Character or Player.CharacterAdded:Wait()
--- local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+-- ✅ Function to find the ball
+local function getBall()
+    return game.Workspace:FindFirstChild("Part") -- Change "Part" to actual ball name
+end
 
--- local autoHitEnabled = false
--- local cooldown = false
--- local autoHitConnection -- Holds the loop connection
+-- ✅ Function to follow the ball smoothly
+local function followBall()
+    local player = game:GetService("Players").LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+    local humanoid = character:FindFirstChildOfClass("Humanoid")
 
--- -- ✅ Auto-Hit Ball Function
--- local function AutoHitBall()
---     if autoHitEnabled and not cooldown then
---         local Ball = game.Workspace:FindFirstChild("Ball") -- Find the Ball object
---         if Ball and Values.CURRENT_BALL_ID:Get() and Values.PLAYER_ACTIVE_STATE:Get() then
---             local distance = (Ball.Position - HumanoidRootPart.Position).Magnitude
---             if distance < 10 then -- Adjust range if necessary
---                 cooldown = true
---                 Actions.PLAY_VISUAL_ABILITY:Fire("HitBall", Character, true, Values.CURRENT_BALL_ID:Get())
+    local lastPosition = humanoidRootPart.Position -- Store previous position for smooth transition
 
---                 -- Cooldown timer
---                 task.delay(1, function() cooldown = false end)
---             end
---         end
---     end
--- end
+    while following do
+        local ball = getBall()
+        if ball and humanoid and humanoidRootPart then
+            local ballPosition = ball.Position
 
--- -- ✅ Start Auto-Hit Loop
--- local function StartAutoHit()
---     if autoHitConnection then autoHitConnection:Disconnect() end -- Prevent duplicate loops
+            -- Smooth left/right movement using Lerp
+            local newPosition = lastPosition:Lerp(Vector3.new(ballPosition.X, humanoidRootPart.Position.Y, ballPosition.Z), 0.1)
 
---     if autoHitEnabled then
---         autoHitConnection = RunService.RenderStepped:Connect(AutoHitBall)
---     end
--- end
+            humanoid:MoveTo(newPosition)
+            lastPosition = newPosition -- Update last position for smooth transition
+        end
+        wait(0.05) -- Faster update for smoother movement
+    end
+end
 
--- -- ✅ Stop Auto-Hit Loop
--- local function StopAutoHit()
---     if autoHitConnection then
---         autoHitConnection:Disconnect()
---         autoHitConnection = nil
---     end
--- end
-
--- -- ✅ Ensure Rayfield and MainTab Are Loaded First
--- local AutoHitButton = MainTab:CreateButton({
---     Name = "Toggle Auto-Hit Ball",
---     Callback = function()
---         autoHitEnabled = not autoHitEnabled -- Toggle auto-hit
-
---         Rayfield:Notify({
---             Title = "Auto-Hit Ball",
---             Content = "Auto-Hit is now " .. (autoHitEnabled and "Enabled" or "Disabled"),
---             Duration = 3
---         })
-
---         if autoHitEnabled then
---             StartAutoHit()
---         else
---             StopAutoHit()
---         end
---     end
--- })
-
--- -- ✅ Manually Trigger Hit When Player Presses F or Left Mouse Click
--- UserInputService.InputBegan:Connect(function(input, gameProcessed)
---     if not gameProcessed and (input.KeyCode == Enum.KeyCode.F or input.UserInputType == Enum.UserInputType.MouseButton1) then
---         if not cooldown and Values.CURRENT_BALL_ID:Get() and Values.PLAYER_ACTIVE_STATE:Get() then
---             cooldown = true
---             Actions.PLAY_VISUAL_ABILITY:Fire("HitBall", Character, true, Values.CURRENT_BALL_ID:Get())
-
---             -- Cooldown timer
---             task.delay(1, function() cooldown = false end)
---         end
---     end
--- end)
+-- ✅ Creating the toggle button inside the GUI
+MainTab:CreateToggle({
+    Name = "Follow Ball",
+    CurrentValue = false,
+    Flag = "BallFollow",
+    Callback = function(value)
+        following = value
+        if following then
+            followBall()
+        end
+    end
+})
