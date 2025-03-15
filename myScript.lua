@@ -47,7 +47,7 @@ Rayfield:Notify({
 local InfiniteJumpEnabled = false
 local JumpConnection -- Store the connection so we can properly disconnect it
 
-local Button = MainTab:CreateButton({
+local Button = MainTab:CreateToggle({
     Name = "Infinite Jump",
     Callback = function()
         if InfiniteJumpEnabled then
@@ -79,7 +79,7 @@ local Button = MainTab:CreateButton({
 
 local WalkThroughWallsEnabled = false
 
-local WalkThroughWallsButton = MainTab:CreateButton({
+local WalkThroughWallsButton = MainTab:CreateToggle({
     Name = "Walk Through Walls",
     Callback = function()
         WalkThroughWallsEnabled = not WalkThroughWallsEnabled -- Toggle the state
@@ -105,7 +105,7 @@ local WalkThroughWallsButton = MainTab:CreateButton({
 
 local LowFPSModeEnabled = false
 
-local LowFPSButton = MainTab:CreateButton({
+local LowFPSButton = MainTab:CreateToggle({
     Name = "Low FPS Mode",
     Callback = function()
         LowFPSModeEnabled = not LowFPSModeEnabled -- Toggle state
@@ -221,7 +221,7 @@ local function autoMoveForward()
     end
 end
 
-local RespawnButton = MainTab:CreateButton({
+local RespawnButton = MainTab:CreateToggle({
     Name = "Instant Spawn at Spawn Point",
     Callback = function()
         teleportToSpawn()
@@ -242,7 +242,7 @@ local RespawnButton = MainTab:CreateButton({
 local scriptEnabled = false -- Default: script is disabled
 local flyGUI = nil -- Store GUI instance
 
-local ToggleScriptButton = MainTab:CreateButton({
+local ToggleScriptButton = MainTab:CreateToggle({
     Name = "Enable Fly GUI",
     Callback = function()
         scriptEnabled = not scriptEnabled
@@ -742,5 +742,50 @@ MainTab:CreateToggle({
         if following then
             followBall()
         end
+    end
+})
+
+
+
+-- CONTINOUS HIT BUTTON ONLY FOR PC
+
+
+local vim = game:GetService("VirtualInputManager")
+local hitKey = Enum.KeyCode.F
+local autoHitEnabled = false
+local autoHitThreads = {}
+
+-- Function to start/stop auto-hit spam
+local function toggleAutoHit(enabled)
+    if enabled then
+        for i = 1, 20 do
+            local thread = task.spawn(function()
+                while autoHitEnabled do
+                    vim:SendKeyEvent(true, hitKey, false, game)
+                    vim:SendKeyEvent(false, hitKey, false, game)
+                    task.wait()
+                end
+            end)
+            table.insert(autoHitThreads, thread)
+        end
+    else
+        autoHitEnabled = false
+        autoHitThreads = {} -- Clear threads
+    end
+end
+
+-- Toggle Button for Auto Hit
+MainTab:CreateToggle({
+    Name = "🔥 Ultra-Fast Auto-Hit",
+    CurrentValue = false,
+    Flag = "AutoHit",
+    Callback = function(value)
+        autoHitEnabled = value
+        toggleAutoHit(value)
+        Rayfield:Notify({
+            Title = "Auto-Hit",
+            Content = value and "✅ Auto-Hit Enabled!" or "❌ Auto-Hit Disabled!",
+            Duration = 2
+        })
     end
 })

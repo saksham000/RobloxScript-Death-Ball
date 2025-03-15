@@ -114,4 +114,110 @@ end
 
 
 
+AUTO HIT SCRIPT SOME WHAT WORKING ONLY LIITLE BIT
 
+
+
+local player = game:GetService("Players").LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local vim = game:GetService("VirtualInputManager") -- Use Virtual Input Manager for key presses
+
+local hitCooldown = 1.5 -- Adjust based on game delay
+local lastHitTime = 0
+local hitKey = Enum.KeyCode.F -- Change to Enum.UserInputType.MouseButton1 for left-click
+
+-- Function to find the ball
+local function getBall()
+    return game.Workspace:FindFirstChild("Part") -- Change "Part" to the ball’s actual name
+end
+
+-- Function to check distance and hit the ball
+local function autoHitBall()
+    while true do
+        local ball = getBall()
+        if ball and humanoidRootPart then
+            local distance = (ball.Position - humanoidRootPart.Position).magnitude
+
+            -- If the ball is within 10 studs and cooldown has passed, hit the ball
+            if distance <= 10 and (tick() - lastHitTime) > hitCooldown then
+                lastHitTime = tick() -- Update last hit time
+                
+                -- Simulate pressing "F" to hit the ball
+                vim:SendKeyEvent(true, hitKey, false, game)
+                task.wait(0.1) -- Short delay for key press
+                vim:SendKeyEvent(false, hitKey, false, game)
+
+                print("Auto-hit triggered!")
+            end
+        end
+        wait(0.1) -- Check every 0.1s for best performance
+    end
+end
+
+-- Start the auto-hit function
+task.spawn(autoHitBall)
+
+
+############ continous HIT
+
+
+local vim = game:GetService("VirtualInputManager")
+local hitKey = Enum.KeyCode.F -- Change this if your hit key is different
+
+for i = 1, 10 do -- Creates multiple threads for ultra-fast spam
+    task.spawn(function()
+        while true do
+            vim:SendKeyEvent(true, hitKey, false, game) -- Press key
+            vim:SendKeyEvent(false, hitKey, false, game) -- Release key
+            task.wait() -- Keeps script running without crashing
+        end
+    end)
+end
+
+
+
+
+------------------------------------------PRINTS DATA ON HIT OF BALL BY PLAYER --------------------------------
+
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+-- Find the correct RemoteEvent
+local HitEvent = ReplicatedStorage:FindFirstChild("Actions") and ReplicatedStorage.Actions:FindFirstChild("Action")
+
+if not HitEvent then
+    print("⚠️ Could not find the correct RemoteEvent!")
+    return
+end
+
+-- Function to check if the event belongs to the local player
+local function isPlayerEvent(arguments)
+    for _, arg in pairs(arguments) do
+        if tostring(arg) == LocalPlayer.Name then
+            return true
+        end
+    end
+    return false
+end
+
+-- Function to listen for hit attempts
+local function listenForHitEvents()
+    print("🔍 Listening for YOUR Hit Event... Press 'F' in-game to hit the ball!")
+
+    HitEvent.OnClientEvent:Connect(function(...)
+        local args = {...}
+        if isPlayerEvent(args) then
+            print("🎯 Hit Event Triggered! Arguments:", unpack(args))
+        end
+    end)
+end
+
+-- Start listening
+listenForHitEvents()
+
+
+
+-------------------------------------------------------------------------------------------------------------
