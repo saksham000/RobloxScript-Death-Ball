@@ -1,0 +1,72 @@
+BadgeRewards: table: 0x800177c70c694cd1
+EquippedSwords: table: 0x9ca1f5d99c3408f1
+GemEarnSources: table: 0xd55d580b1f9b78d1
+HiddenElo: 720.4546009546038
+TrackerReconciledDeathBall_v4_prod: true
+Elo: table: 0x26ddaa6f213e54d1
+MaxEquippedEmotes: 6
+MaxEquippedSwords: 1
+MaxEmotes: 50
+Currencies: table: 0x01a9186324a01fb1
+Titles: table: 0xbc178df628965941
+EventJoinRewards: table: 0x0463bf00cd31f6e1
+TradeHistory: table: 0xebe36428bfbe62e1
+PlaytimeRewardDate: 2025_74
+TutorialStage: 5
+SeasonStats_Season1: table: 0x729bea6ba81f6b21
+isNewPlayer: false
+HackMonitoringStats: table: 0x4709ba367aec8511
+Emotes: table: 0x45c99f419a475711
+SpecialEvents: table: 0xa6e7523a0174ed41
+EquippedBooth: Default
+EquippedChampions: table: 0xe2386071bd53a961
+Pity: table: 0xd72dc11c3f225851
+Gamepasses: table: 0x751b127844632121
+SeasonRewards: table: 0x654219393e1929b1
+Champions: table: 0xd0ba4fb3f05cacf1
+ChampionStatistics: table: 0xb0e7f6a42ecfda41
+Settings: table: 0x04e392ebb6365f61
+MaxSprays: 200
+Auto_Delete_Items: table: 0x53990450922b6891
+EquippedEmotes: table: 0xa4dfbb838f611281
+MaxSwords: 50
+MobileButtonPositions: table: 0x90cd6b30158ca251
+Booths: table: 0xfa1b962d79e67861
+Clan: 
+Swords: table: 0x20a1e383ae766f51
+UnlockedRarityCounts: table: 0x42fbe6baaf90e821
+Statistics: table: 0xf67b942747980361
+TotalRobuxSpent: 0
+Rank: table: 0x07280cb86fabe811
+LeaderboardRanks: table: 0xc7d6451239e79b41
+PlaytimeRewardLeaveTick: 1742039494
+LastGameVersion: 1985
+MaxItemsOnSale: 10
+EquippedTitle: 
+OrphanedTradeableItems: table: 0xdc5dc380b309f6d1
+OrphanedAuras: table: 0xd245f3b293aec071
+Auras: table: 0x14c1ada56eb2c671
+isFirstTimeJoin: false
+RankedGamesPlayed: table: 0x8597a3e6048df741
+AwardedBadges: table: 0x78b3cb08beb3f7a1
+MaxEquippedChampions: 1
+ProcessingTrades: table: 0x93aa672d4cee7e71
+DiscoveredItems: table: 0x67cda2f9199ad0b1
+EquippedSprays: table: 0x432b02b5fd564ca1
+MaxChampions: 100
+LastLeaveTime: 1742039494
+GameVersion: 1985
+ClanRank: 5
+Packs: table: 0x557c45ea2755d431
+Sprays: table: 0xab3448388c87a011
+TemporaryUnlocks: table: 0x9045b9659b723ef1
+MaxEquippedSprays: 6
+RankedMatchStatistics: table: 0x551612f4951e4a91
+DailyReward: table: 0xc7a1bb2c99407571
+AllTimeCurrencies: table: 0x49d25c343a0e4531
+DiscoveredAttributes: table: 0x86f7a4ac0e0a3a41
+LeaderboardVariantData: table: 0xda658788892cb371
+ShowedProLobbyPrompt: true
+Potion: table: 0x2975155c67deca11
+PlaytimeRewards: table: 0x92cd0637bc48bb51
+GiftedGamepasses: table: 0xa707b48009c12841

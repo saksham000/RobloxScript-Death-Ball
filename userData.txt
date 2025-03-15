@@ -1,0 +1,1333 @@
+BadgeRewards = {
+},
+EquippedSwords = {
+1 = 66688ad1-b850-4686-a31c-a3a36b48da1b,
+},
+GemEarnSources = {
+boss_damaged = 155000,
+afk = 8970,
+levelups = 285000,
+targetkill = 263000,
+giveaway_ability = 3510,
+booths = 121520,
+targethit = 178300,
+boss_killed = 200000,
+wins = 48000,
+duplicate = 18000,
+like_reward = 1000,
+reward = 40000,
+},
+HiddenElo = 720.4546009546038,
+TrackerReconciledDeathBall_v4_prod = true,
+Elo = {
+Season1 = 1000,
+},
+MaxEquippedEmotes = 6,
+MaxEquippedSwords = 1,
+MaxEmotes = 50,
+Currencies = {
+Souls = 500,
+Gems = 12800,
+Gears = 500,
+},
+Titles = {
+None = {
+},
+},
+EventJoinRewards = {
+VillainMechEvent = Unavailable,
+JiroEvent = Unavailable,
+},
+TradeHistory = {
+1 = {
+Time = 1742023784,
+Recieved = {
+},
+Id = ba70fefc-e784-4c16-9a21-b44e50fda3b5,
+Sent = {
+Currencies.Gems = {
+Count = 69000,
+Type = Currencies.Gems,
+},
+},
+UserId = 7945005132,
+User = Tufaani69,
+},
+2 = {
+Time = 1741946907,
+Recieved = {
+5c4b0ed5-e5ee-46ac-873d-28bd5928ddf0 = {
+Type = Swords,
+Count = 1,
+Item = {
+Type = Christmas Tree,
+},
+},
+},
+Id = d2af7ed9-c6b3-4eac-aca2-8f248eee3fcd,
+Sent = {
+fc762036-6c38-4575-929f-32914344cbac = {
+Type = Swords,
+Count = 1,
+Item = {
+Type = Gazo Whisp,
+},
+},
+},
+UserId = 4081673184,
+User = king24dnra,
+},
+3 = {
+Time = 1741788077,
+Recieved = {
+d5026715-d63d-4646-a0a8-f3917e830d89 = {
+Type = Swords,
+Item = {
+Enchants = {
+DualWield = 1,
+},
+Type = Radiant Strike,
+},
+Count = 1,
+},
+221dd2fe-844b-4483-8313-37f68c173c61 = {
+Type = Swords,
+Item = {
+Enchants = {
+Wind = 1,
+},
+Type = One Axe,
+},
+Count = 1,
+},
+},
+Id = f9fca027-ed26-4593-8aef-0338369f337f,
+Sent = {
+583be058-26ce-458c-ac24-c3edc774a4ce = {
+Type = Swords,
+Item = {
+Type = Goliath,
+},
+Count = 1,
+},
+Currencies.Gems = {
+Count = 12000,
+Type = Currencies.Gems,
+},
+},
+UserId = 7945005132,
+User = Tufaani69,
+},
+4 = {
+Time = 1741261061,
+Recieved = {
+},
+Id = bc3f75e9-dd02-499d-9ac5-1759bf64700a,
+Sent = {
+ee34f89d-c0ae-4222-8b21-67a1373e3b6b = {
+Type = Swords,
+Count = 1,
+Item = {
+Enchants = {
+DualWield = 1,
+},
+Type = Lufus Katana,
+},
+},
+},
+UserId = 7945005132,
+User = Tufaani69,
+},
+5 = {
+Time = 1741253071,
+Recieved = {
+636db635-6f16-4650-8cd2-1ac06715ffe4 = {
+Type = Swords,
+Item = {
+Type = GrimSteel,
+Enchants = {
+},
+Merges = 1,
+},
+Count = 1,
+},
+ee34f89d-c0ae-4222-8b21-67a1373e3b6b = {
+Type = Swords,
+Item = {
+Enchants = {
+DualWield = 1,
+},
+Type = Lufus Katana,
+},
+Count = 1,
+},
+},
+Id = f489cb42-6907-4693-929b-5effc711861e,
+Sent = {
+},
+UserId = 8106952294,
+User = Rorronoaa01,
+},
+6 = {
+Time = 1741251960,
+Recieved = {
+},
+Id = b1945744-f8b4-41db-9f44-faeb0a03b352,
+Sent = {
+f5ff2aa9-e1e9-4ef0-a585-93d775e1cf3f = {
+Type = Swords,
+Item = {
+Enchants = {
+Frost = 2,
+},
+Type = Bloodburnt Chainsaw,
+},
+Count = 1,
+},
+},
+UserId = 8106952294,
+User = Rorronoaa01,
+},
+7 = {
+Time = 1740508562,
+Recieved = {
+ff4fc90e-9926-41ae-8287-c30e43680f47 = {
+Type = Swords,
+Item = {
+Type = Pulsing Smasher,
+},
+Count = 1,
+},
+1a7552d5-bbb2-43e7-a2b8-9d5faf7ed744 = {
+Type = Swords,
+Item = {
+Type = Golden Claw,
+},
+Count = 1,
+},
+e50a7da3-2875-4fb9-bc15-681dfbb2ddd9 = {
+Type = Swords,
+Item = {
+Type = Midnight Sword,
+},
+Count = 1,
+},
+632cce70-b050-4c6b-b25d-a880b068e8a5 = {
+Type = Swords,
+Item = {
+Type = Pulsing Smasher,
+},
+Count = 1,
+},
+7e3cdf56-9571-48c9-a046-c2f5af5fa213 = {
+Type = Swords,
+Item = {
+Type = Sacred Slicer,
+},
+Count = 1,
+},
+ee862062-f64f-4985-8148-0aadf27cf639 = {
+Type = Swords,
+Item = {
+Enchants = {
+Frost = 1,
+},
+Type = Goliath,
+},
+Count = 1,
+},
+b649447f-cea2-4739-8801-600114007d1b = {
+Type = Swords,
+Item = {
+Type = Goliath,
+},
+Count = 1,
+},
+2e4cf625-579a-4eda-84fd-4ef9c7d10939 = {
+Type = Swords,
+Item = {
+Type = Golden Claw,
+},
+Count = 1,
+},
+9dad0c90-e593-4c5d-9cfa-4c1acab4020c = {
+Type = Swords,
+Item = {
+Type = Sacred Slicer,
+},
+Count = 1,
+},
+},
+Id = d24ac588-9e62-4fae-9e78-7fc6c71c2d27,
+Sent = {
+56d7936e-9936-4162-aa84-72bdc67534ee = {
+Type = Swords,
+Item = {
+Type = Pulsing Smasher,
+},
+Count = 1,
+},
+e7274d6e-b737-4cbe-976a-c9ead1fb276c = {
+Type = Swords,
+Item = {
+Type = Electron Edge,
+},
+Count = 1,
+},
+30e89f88-b373-4e1f-994d-3340af06dc1c = {
+Type = Swords,
+Item = {
+Type = Bloodthirst Katana,
+},
+Count = 1,
+},
+4d650195-dd51-4bab-b5ef-597b650c7ae2 = {
+Type = Swords,
+Item = {
+Type = Bloodthirst Katana,
+},
+Count = 1,
+},
+d814d1c4-a87a-4cff-bb1d-924212250807 = {
+Type = Swords,
+Item = {
+Type = Bloodthirst Katana,
+},
+Count = 1,
+},
+f35c930e-1c92-4e30-8316-4a569a16f1ce = {
+Type = Swords,
+Item = {
+Type = Green Surge,
+},
+Count = 1,
+},
+0a92dadd-aa1b-4087-a02d-1c6fd0762f08 = {
+Type = Swords,
+Item = {
+Type = Electron Edge,
+},
+Count = 1,
+},
+0a0c71d0-668a-4a9f-a126-959dd7a5a2b9 = {
+Type = Swords,
+Item = {
+Type = Bloodthirst Katana,
+},
+Count = 1,
+},
+5b193549-1cbd-4930-8751-04659f47f471 = {
+Type = Swords,
+Item = {
+Type = Electron Edge,
+},
+Count = 1,
+},
+},
+UserId = 4783021590,
+User = vaibhav_opag,
+},
+8 = {
+Time = 1740508257,
+Recieved = {
+116a6773-1382-420b-b367-1378eec7316a = {
+Type = Swords,
+Item = {
+Type = Phantom Blade,
+},
+Count = 1,
+},
+5323437c-d76c-41d2-9d04-c148f4c8179f = {
+Type = Swords,
+Item = {
+Enchants = {
+Electric = 1,
+},
+Type = Darkstar,
+},
+Count = 1,
+},
+},
+Id = 9daee207-2972-4c35-82bb-0d17c603cd85,
+Sent = {
+9a945397-9d87-4d9f-9d96-5aa4d6135511 = {
+Type = Swords,
+Item = {
+Enchants = {
+Wind = 3,
+},
+Type = King's Spear,
+},
+Count = 1,
+},
+71ddcba7-aed5-4407-aded-24f209d30fb4 = {
+Type = Swords,
+Item = {
+Type = Nova Striker,
+},
+Count = 1,
+},
+},
+UserId = 7650545204,
+User = Aahilkhanssj,
+},
+9 = {
+Time = 1740507771,
+Recieved = {
+9a945397-9d87-4d9f-9d96-5aa4d6135511 = {
+Type = Swords,
+Item = {
+Enchants = {
+Wind = 3,
+},
+Type = King's Spear,
+},
+Count = 1,
+},
+},
+Id = 360baaa7-8b3f-475f-a556-7e634019bc6b,
+Sent = {
+33679e80-a256-43b8-a66a-a7d46eea93f9 = {
+Type = Swords,
+Item = {
+Enchants = {
+Frost = 2,
+},
+Type = Gazo Whisp,
+},
+Count = 1,
+},
+},
+UserId = 7961557093,
+User = DEATH_2O12,
+},
+10 = {
+Time = 1740507653,
+Recieved = {
+33679e80-a256-43b8-a66a-a7d46eea93f9 = {
+Type = Swords,
+Item = {
+Enchants = {
+Frost = 2,
+},
+Type = Gazo Whisp,
+},
+Count = 1,
+},
+},
+Id = 2412e09e-48af-4114-a2c0-82fe7c18882b,
+Sent = {
+9a945397-9d87-4d9f-9d96-5aa4d6135511 = {
+Type = Swords,
+Item = {
+Type = King's Spear,
+},
+Count = 1,
+},
+},
+UserId = 7961557093,
+User = DEATH_2O12,
+},
+11 = {
+Time = 1740157289,
+Recieved = {
+ad903fa6-8c3b-4c83-bc00-c1ca7fa61e26 = {
+Type = Swords,
+Item = {
+Type = Glint Sword,
+},
+Count = 1,
+},
+},
+Id = e5108c00-8b51-425d-b895-29f4e098c253,
+Sent = {
+02029408-b88f-48bd-83d0-84cf90a19d60 = {
+Type = Swords,
+Item = {
+Type = Dragon Sword,
+},
+Count = 1,
+},
+aed8ad13-babc-4233-ae3c-9b78e998a5fe = {
+Type = Swords,
+Item = {
+Enchants = {
+Wind = 1,
+},
+Type = Frost Incisor,
+},
+Count = 1,
+},
+0b69196a-4402-405c-8772-167567f3298f = {
+Type = Swords,
+Item = {
+Type = The Shadow,
+},
+Count = 1,
+},
+},
+UserId = 7945005132,
+User = Tufaani69,
+},
+12 = {
+Time = 1740156676,
+Recieved = {
+aed8ad13-babc-4233-ae3c-9b78e998a5fe = {
+Type = Swords,
+Item = {
+Enchants = {
+Wind = 1,
+},
+Type = Frost Incisor,
+},
+Count = 1,
+},
+},
+Id = 74d8da68-79ab-4117-8c3b-359d127fdc7f,
+Sent = {
+0580565b-e92a-4fdb-9483-50bd62727eb8 = {
+Type = Swords,
+Item = {
+Type = Lufus Katana,
+},
+Count = 1,
+},
+},
+UserId = 7945005132,
+User = Tufaani69,
+},
+13 = {
+Time = 1740072366,
+Recieved = {
+f5ff2aa9-e1e9-4ef0-a585-93d775e1cf3f = {
+Type = Swords,
+Count = 1,
+Item = {
+Enchants = {
+Wind = 1,
+},
+Type = Bloodburnt Chainsaw,
+},
+},
+},
+Id = 61c7e9be-1041-4653-8411-b84095f67bcd,
+Sent = {
+816d1860-2566-43f1-a4ce-e53eb7c14579 = {
+Type = Swords,
+Count = 1,
+Item = {
+Enchants = {
+Flame = 2,
+},
+Type = One Axe,
+},
+},
+},
+UserId = 8022756900,
+User = febri_pro23,
+},
+14 = {
+Time = 1740071858,
+Recieved = {
+816d1860-2566-43f1-a4ce-e53eb7c14579 = {
+Type = Swords,
+Count = 1,
+Item = {
+Enchants = {
+Flame = 2,
+},
+Type = One Axe,
+},
+},
+},
+Id = 0ca2f3a1-00a8-404d-a3bf-14d8eed46fa0,
+Sent = {
+f5ff2aa9-e1e9-4ef0-a585-93d775e1cf3f = {
+Type = Swords,
+Count = 1,
+Item = {
+Enchants = {
+Wind = 1,
+},
+Type = Bloodburnt Chainsaw,
+},
+},
+},
+UserId = 8022756900,
+User = febri_pro23,
+},
+15 = {
+Time = 1740071740,
+Recieved = {
+},
+Id = c6a34e24-7c8b-4741-b608-1a78f2dc73eb,
+Sent = {
+fc0a200f-2272-4d61-992d-dbbf1c0cf436 = {
+Type = Swords,
+Count = 1,
+Item = {
+Type = Gladius,
+},
+},
+},
+UserId = 5036727066,
+User = shivanshpro36,
+},
+},
+PlaytimeRewardDate = 2025_74,
+TutorialStage = 5,
+SeasonStats_Season1 = {
+Played = 0,
+Elo = 250,
+ChampionUses = {
+},
+LastPlayed = 1739452424,
+Wins = 0,
+Deaths = 0,
+Damage = 0,
+},
+isNewPlayer = false,
+HackMonitoringStats = {
+Misses = 0,
+DeflectsStartedWhileNotTarget = 0,
+SusRounds = 0,
+NormalRounds = 0,
+FastReflexHits = 0,
+DeflectsStartedWhileTarget = 0,
+FastReflexMisses = 0,
+Hits = 0,
+},
+Emotes = {
+70e86f01-0b03-4593-a972-e88d2db6cf4f = {
+Type = Warming Up,
+},
+c3c7b681-468b-400e-9edb-86e400d80647 = {
+Type = The Wiggle,
+},
+e9f38092-fdad-458f-9b98-e510dbb6f08b = {
+Type = Silly Dance,
+},
+90565aaa-70e0-4bef-860e-a94fd76b22fe = {
+Type = Laugh,
+},
+d12b7c64-40ce-43b8-a352-0af0f658e040 = {
+Type = Dead,
+},
+7d2fa58b-68eb-440d-9d8c-9766709c50a3 = {
+Type = Duck Dance,
+},
+2a7e0607-ac06-4c61-919b-82bedd962c5b = {
+Type = Turtle Shimmy,
+},
+},
+SpecialEvents = {
+CardHunt = {
+CardsToFind = {
+5 = {
+IsFound = true,
+},
+4 = {
+IsFound = true,
+},
+7 = {
+IsFound = true,
+},
+6 = {
+IsFound = true,
+},
+14 = {
+IsFound = true,
+},
+8 = {
+IsFound = true,
+},
+17 = {
+IsFound = true,
+},
+9 = {
+IsFound = true,
+},
+10 = {
+IsFound = true,
+},
+},
+},
+ClaimedKiritoReward = true,
+HasClaimedGroupBonus = true,
+},
+EquippedBooth = Default,
+EquippedChampions = {
+1 = 93734e48-2509-44d4-bef5-999022110b86,
+},
+Pity = {
+Emote Pack = {
+5 = 9,
+4 = 0,
+3 = 9,
+},
+Mech Pack = {
+5 = 92,
+4 = 60,
+3 = 11,
+6 = 12,
+},
+Spirit Pack = {
+5 = 278,
+4 = 115,
+3 = 14,
+6 = 44,
+},
+Solo Pack = {
+5 = 75,
+4 = 75,
+3 = 26,
+},
+},
+Gamepasses = {
+},
+SeasonRewards = {
+},
+Champions = {
+6d9c17aa-ef04-4a9a-8c7a-94f3c262ee84 = {
+Type = Keilo,
+Level = 100,
+XP = 0,
+XPAlpha = 0,
+},
+015114ff-f350-493c-9084-c33e301bb300 = {
+Level = 59,
+Type = Lufus,
+XP = 1310,
+XPAlpha = 0.8733333333333333,
+},
+83fb3944-c9cb-448f-bfba-6bcee8c2a0c7 = {
+Level = 63,
+Type = Koju,
+XP = 560,
+XPAlpha = 0.37333333333333335,
+},
+26b3f686-57a8-413d-8029-144f5411b4ac = {
+Level = 61,
+Type = Torokai,
+XP = 590,
+XPAlpha = 0.3933333333333333,
+},
+c4e728de-5ef7-4d6f-8daa-91bf45904fc9 = {
+Level = 87,
+Type = Jiro,
+XP = 30,
+XPAlpha = 0.02,
+},
+93734e48-2509-44d4-bef5-999022110b86 = {
+Type = Senshu,
+Level = 73,
+XP = 770,
+XPAlpha = 0.5133333333333333,
+},
+542600a7-8c67-49ba-bd78-effa802ba695 = {
+Type = Gazo,
+Level = 65,
+XP = 440,
+XPAlpha = 0.29333333333333333,
+},
+60dfb156-e91c-4fac-8098-48a2e3dbed04 = {
+Level = 1,
+Type = Default,
+XP = 0,
+XPAlpha = 0,
+},
+cd704051-d0d7-4392-9121-c63792bc6823 = {
+Level = 60,
+Type = Saito,
+XP = 310,
+XPAlpha = 0.20666666666666667,
+},
+},
+ChampionStatistics = {
+Torokai = {
+Uses = 91,
+Wins = 20,
+},
+Gazo = {
+Uses = 127,
+Wins = 11,
+},
+Senshu = {
+Uses = 168,
+Wins = 10,
+},
+Koju = {
+Uses = 106,
+Wins = 6,
+},
+Keilo = {
+Uses = 392,
+Wins = 38,
+},
+Saito = {
+Uses = 101,
+Wins = 7,
+},
+Jiro = {
+Uses = 134,
+Wins = 33,
+},
+Lufus = {
+Uses = 153,
+Wins = 9,
+},
+},
+Settings = {
+Camera Shake = true,
+Ability Keybind 2 = Two,
+Dash Keybind = Q,
+Deflect Keybind = F,
+Ball Camera = true,
+Show Auras = 1,
+Vibrations = true,
+Low Quality = false,
+Top Health Bar = true,
+Emote Keybind = B,
+Ability Keybind 3 = Three,
+Ball Camera Keybind = R,
+Ability Keybind 4 = Four,
+Receive Trade Requests = 1,
+Spray Keybind = Y,
+Ability Keybind 1 = One,
+Mute Music = false,
+},
+MaxSprays = 200,
+Auto_Delete_Items = {
+1 = true,
+2 = true,
+},
+EquippedEmotes = {
+1 = d12b7c64-40ce-43b8-a352-0af0f658e040,
+2 = 70e86f01-0b03-4593-a972-e88d2db6cf4f,
+3 = 7d2fa58b-68eb-440d-9d8c-9766709c50a3,
+4 = 90565aaa-70e0-4bef-860e-a94fd76b22fe,
+5 = 2a7e0607-ac06-4c61-919b-82bedd962c5b,
+},
+MaxSwords = 50,
+MobileButtonPositions = {
+},
+Booths = {
+1 = Default,
+},
+Clan = ,
+Swords = {
+9deb08ed-4e8f-41ee-b735-90f0aa444b7d = {
+Type = Green Surge,
+},
+07947bf4-8cf1-4775-80b0-185946085318 = {
+Type = Apex Dagger,
+},
+696f4fed-6ae6-4d8e-b4b2-1d0b4e47e4e9 = {
+Type = The Shadow,
+OnSale = 30000,
+Aura = Poison,
+Enchants = {
+},
+Merges = 1,
+},
+636db635-6f16-4650-8cd2-1ac06715ffe4 = {
+Type = GrimSteel,
+Enchants = {
+},
+Merges = 1,
+},
+1a6e4636-f817-4b47-955e-00e3c1cad956 = {
+Type = Electron Edge,
+},
+2c020ba3-18a3-41eb-9594-f85798c5a6ad = {
+Type = Inferno Spike,
+},
+13257d11-a7a3-4e7f-87f0-62d04208f89e = {
+Type = Midnight Sword,
+},
+8673b31a-ee34-4741-80d1-be0b4f894063 = {
+Type = Pulsing Smasher,
+},
+8b4061f2-cc31-4e45-94c9-3effb96245e0 = {
+Type = Green Surge,
+},
+2e4cf625-579a-4eda-84fd-4ef9c7d10939 = {
+Type = Golden Claw,
+},
+1bd5279a-5c5e-4d69-b6d7-cc491e94ffb7 = {
+Type = Electron Edge,
+},
+b686d1e3-2549-45a2-9e90-e6850a747a49 = {
+Type = Apex Dagger,
+},
+f76d662a-8361-45a5-82c9-167d940bbc00 = {
+OnSale = 20000,
+Type = Apocalypse Bat,
+},
+fc058f34-7b24-4ac8-b0ee-f7d920661ea3 = {
+Type = Starlit Blade,
+},
+4b765bca-90bb-44d9-ae99-21c23f72f756 = {
+Type = Pulsing Smasher,
+},
+ee862062-f64f-4985-8148-0aadf27cf639 = {
+Enchants = {
+Frost = 1,
+},
+Type = Goliath,
+},
+d5026715-d63d-4646-a0a8-f3917e830d89 = {
+Type = Radiant Strike,
+Enchants = {
+DualWield = 1,
+},
+OnSale = 500000,
+},
+ff4fc90e-9926-41ae-8287-c30e43680f47 = {
+Type = Pulsing Smasher,
+},
+1a7552d5-bbb2-43e7-a2b8-9d5faf7ed744 = {
+Type = Golden Claw,
+},
+7e3cdf56-9571-48c9-a046-c2f5af5fa213 = {
+Type = Sacred Slicer,
+},
+05d1e7a6-7feb-40db-b501-fe65348cb7d6 = {
+Aura = Blood,
+Type = Neolucidator,
+},
+e04fa059-1c06-4bbe-9f6a-fe4b39535c61 = {
+Type = Goliath,
+},
+66688ad1-b850-4686-a31c-a3a36b48da1b = {
+Type = Glint Sword,
+},
+023dc571-ff2b-43c7-af8e-f416468d950c = {
+Type = Golden Claw,
+},
+8a23e1a7-4112-4f27-a7d4-12c51c1b239a = {
+Type = Golden Claw,
+},
+632cce70-b050-4c6b-b25d-a880b068e8a5 = {
+Type = Pulsing Smasher,
+},
+e50a7da3-2875-4fb9-bc15-681dfbb2ddd9 = {
+Type = Midnight Sword,
+},
+8db2c5e1-4632-4838-b4a6-732499861a3b = {
+Type = Pulsing Smasher,
+},
+9dad0c90-e593-4c5d-9cfa-4c1acab4020c = {
+Type = Sacred Slicer,
+},
+024dd0c1-9d54-4a9e-8b77-a2a9455af606 = {
+Type = Phantom Edge,
+},
+ab61cb26-52f7-4f41-844f-604e7ebe8367 = {
+Type = Midnight Sword,
+},
+0526408b-fef1-4513-82f7-f8fbdcfe60a2 = {
+Type = Green Surge,
+},
+d46922a8-5ea7-4c5f-82ca-973975b6f943 = {
+Type = Sacred Slicer,
+},
+ca746f76-5e69-435e-8ba4-fd0697b6aba3 = {
+Type = Default Katana,
+},
+4d2361ac-b1bf-4078-8939-61e97a093bf6 = {
+Type = Golden Claw,
+},
+fe26e25a-54e2-4d3a-b0c1-8abc71272738 = {
+Type = Goliath,
+},
+b145a7c7-f5c6-4878-affc-ec057fdb12ec = {
+Type = Eclipse Dagger,
+},
+},
+UnlockedRarityCounts = {
+1 = 312,
+2 = 119,
+3 = 7,
+4 = 6,
+5 = 0,
+6 = 10,
+},
+Statistics = {
+Deaths = 1152,
+LevelUps = 560,
+Wins = 135,
+Losses = 0,
+AbilityUses = 2651.5630000000297,
+Kills = 1315,
+SwordsEnchanted = 77,
+SwordsMerged = 1,
+Playtime = 376233,
+Deflects = 21172,
+Damage = 3454,
+},
+TotalRobuxSpent = 0,
+Rank = {
+Season1 = Unranked,
+},
+LeaderboardRanks = {
+Foxuro = {
+Weekly = 8329,
+},
+Koju = {
+Weekly = 19744,
+},
+Jiro = {
+Weekly = 11374,
+},
+Kameki = {
+Weekly = 33651,
+},
+Playtime = {
+Weekly = 1224,
+},
+RAP = {
+AllTime = 100000,
+},
+Gazo = {
+Weekly = 25616,
+},
+Senshu = {
+Weekly = 16029,
+},
+Torokai = {
+Weekly = 2854,
+},
+Wins = {
+AllTime = 100000,
+},
+Lufus = {
+Weekly = 72234,
+},
+Keilo = {
+Weekly = 7109,
+},
+Gems = {
+AllTime = 100000,
+},
+Kills = {
+Weekly = 7641,
+},
+Saito = {
+Weekly = 31320,
+},
+Gemtoki = {
+Weekly = 2941,
+},
+Season1 = {
+AllTime = 100000,
+},
+},
+PlaytimeRewardLeaveTick = 1742039494,
+LastGameVersion = 1985,
+MaxItemsOnSale = 10,
+EquippedTitle = ,
+OrphanedTradeableItems = {
+Sprays = {
+},
+Emotes = {
+},
+Champions = {
+},
+Swords = {
+},
+},
+OrphanedAuras = {
+},
+Auras = {
+Flower = 6,
+Wind = 56,
+Calm = 17,
+Ember = 23,
+Shine = 12,
+Poison = 6,
+Spirit = 8,
+Blood = 0,
+},
+isFirstTimeJoin = false,
+RankedGamesPlayed = {
+Season1 = 0,
+},
+AwardedBadges = {
+},
+MaxEquippedChampions = 1,
+ProcessingTrades = {
+},
+DiscoveredItems = {
+1 = Default,
+2 = Default Katana,
+3 = Lufus,
+4 = Inferno Spike,
+5 = Apex Dagger,
+6 = Green Surge,
+7 = Gazo,
+8 = Mecha Smasher,
+9 = Phantom Blade,
+10 = Cyber Slicer,
+11 = Jiro,
+12 = Keilo,
+13 = Koju,
+14 = IronSmash,
+15 = Golden Claw,
+16 = Glint Sword,
+17 = The Shadow,
+18 = Goliath,
+19 = Sacred Slicer,
+20 = Gazo Whisp,
+21 = Bloodthirst Katana,
+22 = Duck Dance,
+23 = The Wiggle,
+24 = Electron Edge,
+25 = Turtle Shimmy,
+26 = Phoenix Axe,
+27 = Runeblade,
+28 = Midnight Sword,
+29 = Dragon Sword,
+30 = Crimson Mace,
+31 = Viper Axe,
+32 = Pulsing Smasher,
+33 = Bloodburnt Chainsaw,
+34 = Gladius,
+35 = Torokai,
+36 = Senshu,
+37 = Neolucidator,
+38 = Lufus Katana,
+39 = King's Spear,
+40 = Nova Striker,
+41 = Darkstar,
+42 = Apocalypse Bat,
+43 = Eclipse Dagger,
+44 = Phantom Edge,
+45 = Titan Reaper,
+46 = GrimSteel,
+47 = Saito,
+48 = Starlit Blade,
+49 = Radiant Strike,
+50 = One Axe,
+51 = Silly Dance,
+52 = Laugh,
+53 = Warming Up,
+54 = Dead,
+55 = Christmas Tree,
+},
+EquippedSprays = {
+},
+MaxChampions = 100,
+LastLeaveTime = 1742039494,
+GameVersion = 1985,
+ClanRank = 5,
+Packs = {
+},
+Sprays = {
+},
+TemporaryUnlocks = {
+Lufus = 1739454026,
+},
+MaxEquippedSprays = 6,
+RankedMatchStatistics = {
+},
+DailyReward = {
+YearDay = 74,
+CurrentDay = 4,
+UnclaimedDays = {
+},
+},
+AllTimeCurrencies = {
+Souls = 278500,
+Gems = 953800,
+Gears = 92500,
+},
+DiscoveredAttributes = {
+Auras = {
+Flower = true,
+Wind = true,
+Calm = true,
+Ember = true,
+Shine = true,
+Poison = true,
+Spirit = true,
+Blood = true,
+},
+},
+LeaderboardVariantData = {
+Foxuro = {
+Weekly = {
+Year = 2025,
+YearDay = 69,
+YearWeek = 11,
+AllTimeScore = 0,
+Score = 0,
+},
+},
+Koju = {
+Weekly = {
+Year = 2025,
+YearDay = 69,
+YearWeek = 11,
+AllTimeScore = 6,
+Score = 0,
+},
+},
+Jiro = {
+Weekly = {
+Year = 2025,
+YearDay = 69,
+YearWeek = 11,
+AllTimeScore = 30,
+Score = 3,
+},
+},
+Kameki = {
+Weekly = {
+Year = 2025,
+YearDay = 69,
+YearWeek = 11,
+AllTimeScore = 0,
+Score = 0,
+},
+},
+Playtime = {
+Weekly = {
+Score = 83434,
+AllTimeScore = 276774,
+Year = 2025,
+YearDay = 69,
+YearWeek = 11,
+},
+},
+RAP = {
+AllTime = {
+Score = 378000,
+AllTimeScore = 0,
+Year = 2025,
+YearDay = 50,
+YearWeek = 8,
+},
+},
+Gazo = {
+Weekly = {
+Year = 2025,
+YearDay = 69,
+YearWeek = 11,
+AllTimeScore = 11,
+Score = 0,
+},
+},
+Senshu = {
+Weekly = {
+Year = 2025,
+YearDay = 69,
+YearWeek = 11,
+AllTimeScore = 10,
+Score = 0,
+},
+},
+Torokai = {
+Weekly = {
+Year = 2025,
+YearDay = 69,
+YearWeek = 11,
+AllTimeScore = 16,
+Score = 4,
+},
+},
+Wins = {
+AllTime = {
+Score = 135,
+AllTimeScore = 1,
+Year = 2025,
+YearDay = 44,
+YearWeek = 7,
+},
+},
+Lufus = {
+Weekly = {
+Year = 2025,
+YearDay = 69,
+YearWeek = 11,
+AllTimeScore = 8,
+Score = 1,
+},
+},
+Keilo = {
+Weekly = {
+Year = 2025,
+YearDay = 69,
+YearWeek = 11,
+AllTimeScore = 32,
+Score = 6,
+},
+},
+Gems = {
+AllTime = {
+Score = 10150,
+AllTimeScore = 16650,
+Year = 2025,
+YearDay = 50,
+YearWeek = 8,
+},
+},
+Kills = {
+Weekly = {
+Year = 2025,
+YearDay = 69,
+YearWeek = 11,
+AllTimeScore = 1127,
+Score = 188,
+},
+},
+Saito = {
+Weekly = {
+Year = 2025,
+YearDay = 69,
+YearWeek = 11,
+AllTimeScore = 5,
+Score = 2,
+},
+},
+Gemtoki = {
+Weekly = {
+Year = 2025,
+YearDay = 69,
+YearWeek = 11,
+AllTimeScore = 0,
+Score = 0,
+},
+},
+Season1 = {
+AllTime = {
+Score = 250,
+AllTimeScore = 250,
+Year = 2025,
+YearDay = 44,
+YearWeek = 7,
+},
+},
+},
+ShowedProLobbyPrompt = true,
+Potion = {
+AllPotions = {
+Double Luck = 0,
+},
+ActivePotions = {
+},
+},
+PlaytimeRewards = {
+FreeXmasPack = {
+EndTick = 1742039505,
+StartTick = 1742013158,
+RewardClaimed = false,
+},
+FreeXmasLuck = {
+EndTick = 1742039505,
+StartTick = 1742013158,
+RewardClaimed = false,
+},
+},
+GiftedGamepasses = {
+},
