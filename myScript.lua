@@ -101,67 +101,109 @@ local WalkThroughWallsButton = MainTab:CreateToggle({
     end
 })
 
--- lower fps
+--------------------------- new code Lower Graphics --------------------
 
 local LowFPSModeEnabled = false
 
-local LowFPSButton = MainTab:CreateToggle({
-    Name = "Low FPS Mode",
-    Callback = function()
-        LowFPSModeEnabled = not LowFPSModeEnabled -- Toggle state
+local function ToggleMaxFPS(state)
+    LowFPSModeEnabled = state
 
-        -- Get Graphics Settings
-        local lighting = game:GetService("Lighting")
-        local terrain = workspace:FindFirstChildOfClass("Terrain")
+    -- Get Services
+    local lighting = game:GetService("Lighting")
+    local terrain = workspace:FindFirstChildOfClass("Terrain")
 
-        if LowFPSModeEnabled then
-            -- Reduce Lighting Effects
-            lighting.GlobalShadows = false
-            lighting.Brightness = 0
-            lighting.FogEnd = 0
+    if LowFPSModeEnabled then
+        -- 💥 Remove ALL Lighting Effects 💥
+        lighting.GlobalShadows = false
+        lighting.Brightness = 0
+        lighting.Ambient = Color3.new(0, 0, 0)
+        lighting.OutdoorAmbient = Color3.new(0, 0, 0)
+        lighting.FogEnd = 0
+        lighting.FogStart = 0
+        lighting.ClockTime = 12
+        for _, v in ipairs(lighting:GetChildren()) do
+            v:Destroy()
+        end
 
-            -- Lower Terrain Quality
-            if terrain then
-                terrain.WaterWaveSize = 0
-                terrain.WaterWaveSpeed = 0
-                terrain.WaterReflectance = 0
-                terrain.WaterTransparency = 1
-            end
+        -- 💥 Flatten Terrain 💥
+        if terrain then
+            terrain.WaterWaveSize = 0
+            terrain.WaterWaveSpeed = 0
+            terrain.WaterReflectance = 0
+            terrain.WaterTransparency = 1
+            -- REMOVED terrain.Decoration = false (This caused the error)
+            terrain:Clear()
+        end
 
-            -- Lower other graphic-intensive settings
-            for _, v in ipairs(workspace:GetDescendants()) do
-                if v:IsA("ParticleEmitter") or v:IsA("Beam") or v:IsA("Trail") then
-                    v.Enabled = false -- Disable extra visual effects
-                end
-            end
-
-        else
-            -- Restore Default Graphics
-            lighting.GlobalShadows = true
-            lighting.Brightness = 2
-            lighting.FogEnd = 100000
-
-            if terrain then
-                terrain.WaterWaveSize = 1
-                terrain.WaterWaveSpeed = 1
-                terrain.WaterReflectance = 1
-                terrain.WaterTransparency = 0.5
-            end
-
-            -- Re-enable effects
-            for _, v in ipairs(workspace:GetDescendants()) do
-                if v:IsA("ParticleEmitter") or v:IsA("Beam") or v:IsA("Trail") then
-                    v.Enabled = true -- Restore effects
-                end
+        -- 💥 MASS DISABLE VISUALS 💥
+        for _, v in ipairs(workspace:GetDescendants()) do
+            if v:IsA("ParticleEmitter") or v:IsA("Beam") or v:IsA("Trail") or v:IsA("Smoke") or v:IsA("Fire") or
+                v:IsA("Sparkles") then
+                v:Destroy()
+            elseif v:IsA("PointLight") or v:IsA("SpotLight") or v:IsA("SurfaceLight") then
+                v:Destroy()
+            elseif v:IsA("Texture") or v:IsA("Decal") then
+                v:Destroy()
+            elseif v:IsA("MeshPart") or v:IsA("UnionOperation") then
+                v.Material = Enum.Material.SmoothPlastic
+                v.Reflectance = 0
+                v.TextureID = ""
+            elseif v:IsA("Shirt") or v:IsA("Pants") or v:IsA("CharacterMesh") or v:IsA("Accessory") then
+                v:Destroy()
             end
         end
 
-        -- Notify User
+        -- 💥 REMOVE ALL UI & SOUNDS 💥
+        for _, v in ipairs(game:GetService("Players").LocalPlayer.PlayerGui:GetDescendants()) do
+            if v:IsA("ImageLabel") or v:IsA("Frame") or v:IsA("TextLabel") or v:IsA("ScrollingFrame") or
+                v:IsA("TextButton") then
+                v:Destroy()
+            end
+        end
+
+        for _, v in ipairs(workspace:GetDescendants()) do
+            if v:IsA("Sound") then
+                v:Destroy()
+            end
+        end
+
         Rayfield:Notify({
-            Title = "Low FPS Mode",
-            Content = "Low FPS Mode is now " .. (LowFPSModeEnabled and "Enabled" or "Disabled"),
+            Title = "MAX FPS Mode",
+            Content = "Game Graphics Reduced to Absolute Minimum! Maximum FPS Boost Applied.",
             Duration = 3
         })
+    else
+        -- 💡 Restore Default Graphics 💡
+        lighting.GlobalShadows = true
+        lighting.Brightness = 2
+        lighting.Ambient = Color3.new(1, 1, 1)
+        lighting.OutdoorAmbient = Color3.new(1, 1, 1)
+        lighting.FogEnd = 100000
+        lighting.FogStart = 0
+        lighting.ClockTime = 14
+
+        if terrain then
+            terrain.WaterWaveSize = 1
+            terrain.WaterWaveSpeed = 1
+            terrain.WaterReflectance = 1
+            terrain.WaterTransparency = 0.5
+            -- REMOVED terrain.Decoration = true (Since it doesn't exist)
+        end
+
+        Rayfield:Notify({
+            Title = "MAX FPS Mode",
+            Content = "Graphics Restored to Default!",
+            Duration = 3
+        })
+    end
+end
+
+-- ✅ Properly Create Toggle Button  
+local LowFPSButton = MainTab:CreateToggle({
+    Name = "Toggle MAX FPS Mode",
+    Default = false, -- Start in off mode
+    Callback = function(state)
+        ToggleMaxFPS(state)
     end
 })
 
@@ -697,9 +739,7 @@ function RunScript()
     end)
 end
 
-
 -- auto follow script
-
 
 local following = false
 
@@ -723,7 +763,8 @@ local function followBall()
             local ballPosition = ball.Position
 
             -- Smooth left/right movement using Lerp
-            local newPosition = lastPosition:Lerp(Vector3.new(ballPosition.X, humanoidRootPart.Position.Y, ballPosition.Z), 0.1)
+            local newPosition = lastPosition:Lerp(Vector3.new(ballPosition.X, humanoidRootPart.Position.Y,
+                ballPosition.Z), 0.1)
 
             humanoid:MoveTo(newPosition)
             lastPosition = newPosition -- Update last position for smooth transition
@@ -745,10 +786,7 @@ MainTab:CreateToggle({
     end
 })
 
-
-
 -- CONTINOUS HIT BUTTON ONLY FOR PC
-
 
 local vim = game:GetService("VirtualInputManager")
 local hitKey = Enum.KeyCode.F
