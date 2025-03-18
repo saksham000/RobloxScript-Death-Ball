@@ -1,3 +1,7 @@
+i want help to de encrypte this
+
+
+
 --[[
     This script has been licensed using Luarmor
       Luarmor v3.8b, Lua whitelisting system
