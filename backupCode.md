@@ -1,5 +1,5 @@
 -- spawn button
-
+https://raw.githubusercontent.com/kiciahook/kiciahook/refs/heads/main/loader.lua
 -- local function teleportToSpawn()
 --     local player = game:GetService("Players").LocalPlayer
 --     local character = player.Character or player.CharacterAdded:Wait()
@@ -281,3 +281,118 @@ local LowFPSButton = MainTab:CreateButton({
 --         })
 --     end
 -- })
+
+
+
+
+
+
+
+
+
+
+------------------USELESS WORKING FPS SCRIPT --------------------
+
+local LowFPSModeEnabled = false
+
+local function ToggleMaxFPS(state)
+    LowFPSModeEnabled = state
+
+    -- Get Services
+    local lighting = game:GetService("Lighting")
+    local terrain = workspace:FindFirstChildOfClass("Terrain")
+
+    if LowFPSModeEnabled then
+        -- 💥 Remove ALL Lighting Effects 💥
+        lighting.GlobalShadows = false
+        lighting.Brightness = 0
+        lighting.Ambient = Color3.new(0, 0, 0)
+        lighting.OutdoorAmbient = Color3.new(0, 0, 0)
+        lighting.FogEnd = 0
+        lighting.FogStart = 0
+        lighting.ClockTime = 12
+        for _, v in ipairs(lighting:GetChildren()) do
+            v:Destroy()
+        end
+
+        -- 💥 Flatten Terrain 💥
+        if terrain then
+            terrain.WaterWaveSize = 0
+            terrain.WaterWaveSpeed = 0
+            terrain.WaterReflectance = 0
+            terrain.WaterTransparency = 1
+            -- REMOVED terrain.Decoration = false (This caused the error)
+            terrain:Clear()
+        end
+
+        -- 💥 MASS DISABLE VISUALS 💥
+        for _, v in ipairs(workspace:GetDescendants()) do
+            if v:IsA("ParticleEmitter") or v:IsA("Beam") or v:IsA("Trail") or v:IsA("Smoke") or v:IsA("Fire") or
+                v:IsA("Sparkles") then
+                v:Destroy()
+            elseif v:IsA("PointLight") or v:IsA("SpotLight") or v:IsA("SurfaceLight") then
+                v:Destroy()
+            elseif v:IsA("Texture") or v:IsA("Decal") then
+                v:Destroy()
+            elseif v:IsA("MeshPart") or v:IsA("UnionOperation") then
+                v.Material = Enum.Material.SmoothPlastic
+                v.Reflectance = 0
+                v.TextureID = ""
+            elseif v:IsA("Shirt") or v:IsA("Pants") or v:IsA("CharacterMesh") or v:IsA("Accessory") then
+                v:Destroy()
+            end
+        end
+
+        -- 💥 REMOVE ALL UI & SOUNDS 💥
+        for _, v in ipairs(game:GetService("Players").LocalPlayer.PlayerGui:GetDescendants()) do
+            if v:IsA("ImageLabel") or v:IsA("Frame") or v:IsA("TextLabel") or v:IsA("ScrollingFrame") or
+                v:IsA("TextButton") then
+                v:Destroy()
+            end
+        end
+
+        for _, v in ipairs(workspace:GetDescendants()) do
+            if v:IsA("Sound") then
+                v:Destroy()
+            end
+        end
+
+        Rayfield:Notify({
+            Title = "MAX FPS Mode",
+            Content = "Game Graphics Reduced to Absolute Minimum! Maximum FPS Boost Applied.",
+            Duration = 3
+        })
+    else
+        -- 💡 Restore Default Graphics 💡
+        lighting.GlobalShadows = true
+        lighting.Brightness = 2
+        lighting.Ambient = Color3.new(1, 1, 1)
+        lighting.OutdoorAmbient = Color3.new(1, 1, 1)
+        lighting.FogEnd = 100000
+        lighting.FogStart = 0
+        lighting.ClockTime = 14
+
+        if terrain then
+            terrain.WaterWaveSize = 1
+            terrain.WaterWaveSpeed = 1
+            terrain.WaterReflectance = 1
+            terrain.WaterTransparency = 0.5
+            -- REMOVED terrain.Decoration = true (Since it doesn't exist)
+        end
+
+        Rayfield:Notify({
+            Title = "MAX FPS Mode",
+            Content = "Graphics Restored to Default!",
+            Duration = 3
+        })
+    end
+end
+
+-- ✅ Properly Create Toggle Button  
+local LowFPSButton = MainTab:CreateToggle({
+    Name = "Toggle MAX FPS Mode",
+    Default = false, -- Start in off mode
+    Callback = function(state)
+        ToggleMaxFPS(state)
+    end
+})

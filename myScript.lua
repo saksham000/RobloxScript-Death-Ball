@@ -17,9 +17,9 @@ local Window = Rayfield:CreateWindow({
     },
 
     Discord = {
-        Enabled = false, -- Prompt the user to join your Discord server if their executor supports it
+        Enabled = false,         -- Prompt the user to join your Discord server if their executor supports it
         Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ ABCD would be ABCD
-        RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+        RememberJoins = true     -- Set this to false to make them join the discord every time they load it up
     },
 
     KeySystem = false, -- Set this to true to use our key system
@@ -27,10 +27,10 @@ local Window = Rayfield:CreateWindow({
         Title = "Untitled",
         Subtitle = "Key System",
         Note = "No method of obtaining the key is provided", -- Use this to tell the user how to get a key
-        FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
-        SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-        GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-        Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+        FileName = "Key",                                    -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+        SaveKey = true,                                      -- The user's key will be saved, but if you change the key, they will be unable to use your script
+        GrabKeyFromSite = false,                             -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+        Key = { "Hello" }                                    -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
     }
 })
 
@@ -103,107 +103,36 @@ local WalkThroughWallsButton = MainTab:CreateToggle({
 
 --------------------------- new code Lower Graphics --------------------
 
-local LowFPSModeEnabled = false
+-- FPS Boost Toggle Variable
+local RunService = game:GetService("RunService") -- Ensure RunService is defined
+local RenderingDisabled = false
 
-local function ToggleMaxFPS(state)
-    LowFPSModeEnabled = state
-
-    -- Get Services
-    local lighting = game:GetService("Lighting")
-    local terrain = workspace:FindFirstChildOfClass("Terrain")
-
-    if LowFPSModeEnabled then
-        -- 💥 Remove ALL Lighting Effects 💥
-        lighting.GlobalShadows = false
-        lighting.Brightness = 0
-        lighting.Ambient = Color3.new(0, 0, 0)
-        lighting.OutdoorAmbient = Color3.new(0, 0, 0)
-        lighting.FogEnd = 0
-        lighting.FogStart = 0
-        lighting.ClockTime = 12
-        for _, v in ipairs(lighting:GetChildren()) do
-            v:Destroy()
-        end
-
-        -- 💥 Flatten Terrain 💥
-        if terrain then
-            terrain.WaterWaveSize = 0
-            terrain.WaterWaveSpeed = 0
-            terrain.WaterReflectance = 0
-            terrain.WaterTransparency = 1
-            -- REMOVED terrain.Decoration = false (This caused the error)
-            terrain:Clear()
-        end
-
-        -- 💥 MASS DISABLE VISUALS 💥
-        for _, v in ipairs(workspace:GetDescendants()) do
-            if v:IsA("ParticleEmitter") or v:IsA("Beam") or v:IsA("Trail") or v:IsA("Smoke") or v:IsA("Fire") or
-                v:IsA("Sparkles") then
-                v:Destroy()
-            elseif v:IsA("PointLight") or v:IsA("SpotLight") or v:IsA("SurfaceLight") then
-                v:Destroy()
-            elseif v:IsA("Texture") or v:IsA("Decal") then
-                v:Destroy()
-            elseif v:IsA("MeshPart") or v:IsA("UnionOperation") then
-                v.Material = Enum.Material.SmoothPlastic
-                v.Reflectance = 0
-                v.TextureID = ""
-            elseif v:IsA("Shirt") or v:IsA("Pants") or v:IsA("CharacterMesh") or v:IsA("Accessory") then
-                v:Destroy()
-            end
-        end
-
-        -- 💥 REMOVE ALL UI & SOUNDS 💥
-        for _, v in ipairs(game:GetService("Players").LocalPlayer.PlayerGui:GetDescendants()) do
-            if v:IsA("ImageLabel") or v:IsA("Frame") or v:IsA("TextLabel") or v:IsA("ScrollingFrame") or
-                v:IsA("TextButton") then
-                v:Destroy()
-            end
-        end
-
-        for _, v in ipairs(workspace:GetDescendants()) do
-            if v:IsA("Sound") then
-                v:Destroy()
-            end
-        end
-
+-- Function to toggle rendering
+local function ToggleRendering(state)
+    RenderingDisabled = state
+    if RenderingDisabled then
+        RunService:Set3dRenderingEnabled(false) -- Disable rendering
         Rayfield:Notify({
-            Title = "MAX FPS Mode",
-            Content = "Game Graphics Reduced to Absolute Minimum! Maximum FPS Boost Applied.",
+            Title = "FPS Booster",
+            Content = "Rendering Disabled! Maximum FPS Boost Applied.",
             Duration = 3
         })
     else
-        -- 💡 Restore Default Graphics 💡
-        lighting.GlobalShadows = true
-        lighting.Brightness = 2
-        lighting.Ambient = Color3.new(1, 1, 1)
-        lighting.OutdoorAmbient = Color3.new(1, 1, 1)
-        lighting.FogEnd = 100000
-        lighting.FogStart = 0
-        lighting.ClockTime = 14
-
-        if terrain then
-            terrain.WaterWaveSize = 1
-            terrain.WaterWaveSpeed = 1
-            terrain.WaterReflectance = 1
-            terrain.WaterTransparency = 0.5
-            -- REMOVED terrain.Decoration = true (Since it doesn't exist)
-        end
-
+        RunService:Set3dRenderingEnabled(true) -- Enable rendering
         Rayfield:Notify({
-            Title = "MAX FPS Mode",
-            Content = "Graphics Restored to Default!",
+            Title = "FPS Booster",
+            Content = "Rendering Restored! Graphics Back to Normal.",
             Duration = 3
         })
     end
 end
 
--- ✅ Properly Create Toggle Button  
-local LowFPSButton = MainTab:CreateToggle({
-    Name = "Toggle MAX FPS Mode",
-    Default = false, -- Start in off mode
+-- Create Toggle Button in UI
+MainTab:CreateToggle({
+    Name = "Enable FPS Boost (Disable Rendering)",
+    Default = false, -- Starts in off mode
     Callback = function(state)
-        ToggleMaxFPS(state)
+        ToggleRendering(state)
     end
 })
 
@@ -282,7 +211,7 @@ local RespawnButton = MainTab:CreateToggle({
 -- Version: 3.2
 
 local scriptEnabled = false -- Default: script is disabled
-local flyGUI = nil -- Store GUI instance
+local flyGUI = nil          -- Store GUI instance
 
 local ToggleScriptButton = MainTab:CreateToggle({
     Name = "Enable Fly GUI",
@@ -420,7 +349,6 @@ function RunScript()
     Frame.Draggable = true
 
     onof.MouseButton1Down:connect(function()
-
         if nowe == true then
             nowe = false
 
@@ -445,7 +373,6 @@ function RunScript()
 
             for i = 1, speeds do
                 spawn(function()
-
                     local hb = game:GetService("RunService").Heartbeat
 
                     tpwalking = true
@@ -456,7 +383,6 @@ function RunScript()
                             chr:TranslateBy(hum.MoveDirection)
                         end
                     end
-
                 end)
             end
             game.Players.LocalPlayer.Character.Animate.Disabled = true
@@ -486,7 +412,6 @@ function RunScript()
 
         if game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid").RigType ==
             Enum.HumanoidRigType.R6 then
-
             local plr = game.Players.LocalPlayer
             local torso = plr.Character.Torso
             local flying = true
@@ -532,9 +457,9 @@ function RunScript()
                 end
                 if (ctrl.l + ctrl.r) ~= 0 or (ctrl.f + ctrl.b) ~= 0 then
                     bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (ctrl.f + ctrl.b)) +
-                                      ((game.Workspace.CurrentCamera.CoordinateFrame *
-                                          CFrame.new(ctrl.l + ctrl.r, (ctrl.f + ctrl.b) * .2, 0).p) -
-                                          game.Workspace.CurrentCamera.CoordinateFrame.p)) * speed
+                        ((game.Workspace.CurrentCamera.CoordinateFrame *
+                                CFrame.new(ctrl.l + ctrl.r, (ctrl.f + ctrl.b) * .2, 0).p) -
+                            game.Workspace.CurrentCamera.CoordinateFrame.p)) * speed
                     lastctrl = {
                         f = ctrl.f,
                         b = ctrl.b,
@@ -545,14 +470,14 @@ function RunScript()
                     bv.velocity =
                         ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (lastctrl.f + lastctrl.b)) +
                             ((game.Workspace.CurrentCamera.CoordinateFrame *
-                                CFrame.new(lastctrl.l + lastctrl.r, (lastctrl.f + lastctrl.b) * .2, 0).p) -
+                                    CFrame.new(lastctrl.l + lastctrl.r, (lastctrl.f + lastctrl.b) * .2, 0).p) -
                                 game.Workspace.CurrentCamera.CoordinateFrame.p)) * speed
                 else
                     bv.velocity = Vector3.new(0, 0, 0)
                 end
                 --  game.Players.LocalPlayer.Character.Animate.Disabled = true
                 bg.cframe = game.Workspace.CurrentCamera.CoordinateFrame *
-                                CFrame.Angles(-math.rad((ctrl.f + ctrl.b) * 50 * speed / maxspeed), 0, 0)
+                    CFrame.Angles(-math.rad((ctrl.f + ctrl.b) * 50 * speed / maxspeed), 0, 0)
             end
             ctrl = {
                 f = 0,
@@ -572,7 +497,6 @@ function RunScript()
             plr.Character.Humanoid.PlatformStand = false
             game.Players.LocalPlayer.Character.Animate.Disabled = false
             tpwalking = false
-
         else
             local plr = game.Players.LocalPlayer
             local UpperTorso = plr.Character.UpperTorso
@@ -619,9 +543,9 @@ function RunScript()
                 end
                 if (ctrl.l + ctrl.r) ~= 0 or (ctrl.f + ctrl.b) ~= 0 then
                     bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (ctrl.f + ctrl.b)) +
-                                      ((game.Workspace.CurrentCamera.CoordinateFrame *
-                                          CFrame.new(ctrl.l + ctrl.r, (ctrl.f + ctrl.b) * .2, 0).p) -
-                                          game.Workspace.CurrentCamera.CoordinateFrame.p)) * speed
+                        ((game.Workspace.CurrentCamera.CoordinateFrame *
+                                CFrame.new(ctrl.l + ctrl.r, (ctrl.f + ctrl.b) * .2, 0).p) -
+                            game.Workspace.CurrentCamera.CoordinateFrame.p)) * speed
                     lastctrl = {
                         f = ctrl.f,
                         b = ctrl.b,
@@ -632,14 +556,14 @@ function RunScript()
                     bv.velocity =
                         ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (lastctrl.f + lastctrl.b)) +
                             ((game.Workspace.CurrentCamera.CoordinateFrame *
-                                CFrame.new(lastctrl.l + lastctrl.r, (lastctrl.f + lastctrl.b) * .2, 0).p) -
+                                    CFrame.new(lastctrl.l + lastctrl.r, (lastctrl.f + lastctrl.b) * .2, 0).p) -
                                 game.Workspace.CurrentCamera.CoordinateFrame.p)) * speed
                 else
                     bv.velocity = Vector3.new(0, 0, 0)
                 end
 
                 bg.cframe = game.Workspace.CurrentCamera.CoordinateFrame *
-                                CFrame.Angles(-math.rad((ctrl.f + ctrl.b) * 50 * speed / maxspeed), 0, 0)
+                    CFrame.Angles(-math.rad((ctrl.f + ctrl.b) * 50 * speed / maxspeed), 0, 0)
             end
             ctrl = {
                 f = 0,
@@ -659,40 +583,32 @@ function RunScript()
             plr.Character.Humanoid.PlatformStand = false
             game.Players.LocalPlayer.Character.Animate.Disabled = false
             tpwalking = false
-
         end
-
     end)
 
     up.MouseButton1Down:connect(function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 2, 0)
-
     end)
 
     down.MouseButton1Down:connect(function()
-
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, -2, 0)
-
     end)
 
     game:GetService("Players").LocalPlayer.CharacterAdded:Connect(function(char)
         wait(0.7)
         game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
         game.Players.LocalPlayer.Character.Animate.Disabled = false
-
     end)
 
     plus.MouseButton1Down:connect(function()
         speeds = speeds + 1
         speed.Text = speeds
         if nowe == true then
-
             tpwalking = false
             for i = 1, speeds do
                 spawn(function()
-
                     local hb = game:GetService("RunService").Heartbeat
 
                     tpwalking = true
@@ -703,7 +619,6 @@ function RunScript()
                             chr:TranslateBy(hum.MoveDirection)
                         end
                     end
-
                 end)
             end
         end
@@ -720,7 +635,6 @@ function RunScript()
                 tpwalking = false
                 for i = 1, speeds do
                     spawn(function()
-
                         local hb = game:GetService("RunService").Heartbeat
 
                         tpwalking = true
@@ -731,7 +645,6 @@ function RunScript()
                                 chr:TranslateBy(hum.MoveDirection)
                             end
                         end
-
                     end)
                 end
             end
@@ -769,7 +682,7 @@ local function followBall()
             humanoid:MoveTo(newPosition)
             lastPosition = newPosition -- Update last position for smooth transition
         end
-        wait(0.05) -- Faster update for smoother movement
+        wait(0.05)                     -- Faster update for smoother movement
     end
 end
 
