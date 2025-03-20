@@ -138,46 +138,63 @@ local WalkThroughWallsButton = MainTab:CreateToggle({
 
 
 
--------------------------- Scond low fps --------------------------
+
+
+
+
+-------------------------------------------
 --------------------
+---
+---
+
+
+
+
+
+
+
+
+
+
 local RunService = game:GetService("RunService")
 local Lighting = game:GetService("Lighting")
-
+local Workspace = game:GetService("Workspace")
 local RenderingDisabled = false
 
--- Function to remove unnecessary rendering elements for performance boost
-local function RemoveLaggyEffects()
-    for _, v in pairs(workspace:GetDescendants()) do
-        if v:IsA("Decal") or v:IsA("Texture") or v:IsA("ParticleEmitter") or v:IsA("Trail") or v:IsA("Smoke") or v:IsA("Sparkles") then
-            v:Destroy() -- Removes textures, particles, and decals
-        elseif v:IsA("BasePart") then
-            v.Material = Enum.Material.SmoothPlastic -- Optimized material
-            v.Reflectance = 0 -- No reflections
-        end
-    end
-end
-
--- Function to toggle FPS boost
+-- Function to toggle FPS Boost
 local function ToggleRendering(state)
-    if state == RenderingDisabled then return end -- Prevent duplicate calls
-
     RenderingDisabled = state
-
+    
     if RenderingDisabled then
-        RunService:Set3dRenderingEnabled(false) -- Disable rendering
-        Lighting.GlobalShadows = false -- Disable shadows for FPS boost
-        RemoveLaggyEffects() -- Remove laggy effects
-        settings().Rendering.QualityLevel = Enum.QualityLevel.Level01 -- Lower render quality
+        -- Disable 3D Rendering
+        RunService:Set3dRenderingEnabled(false)
         
+        -- Disable Shadows
+        Lighting.GlobalShadows = false
+        
+        -- Disable all ParticleEmitters
+        for _, v in ipairs(Workspace:GetDescendants()) do
+            if v:IsA("ParticleEmitter") or v:IsA("Beam") or v:IsA("Trail") then
+                v.Enabled = false
+            end
+        end
+
         Rayfield:Notify({
             Title = "FPS Booster",
-            Content = "Rendering & Effects Disabled! Maximum FPS Boost Applied.",
+            Content = "Rendering & Extra Graphics Disabled! Maximum FPS Boost Applied.",
             Duration = 3
         })
     else
-        RunService:Set3dRenderingEnabled(true) -- Enable rendering
-        Lighting.GlobalShadows = true -- Restore shadows
-        settings().Rendering.QualityLevel = Enum.QualityLevel.Automatic -- Restore quality
+        -- Restore Settings
+        RunService:Set3dRenderingEnabled(true)
+        Lighting.GlobalShadows = true
+        
+        -- Enable all ParticleEmitters
+        for _, v in ipairs(Workspace:GetDescendants()) do
+            if v:IsA("ParticleEmitter") or v:IsA("Beam") or v:IsA("Trail") then
+                v.Enabled = true
+            end
+        end
 
         Rayfield:Notify({
             Title = "FPS Booster",
@@ -187,14 +204,17 @@ local function ToggleRendering(state)
     end
 end
 
--- Add Toggle Button to Your Existing UI
+-- Create Toggle Button in UI
 MainTab:CreateToggle({
     Name = "Enable FPS Boost (Disable Rendering)",
-    Default = false,
+    Default = false, -- Starts in off mode
     Callback = function(state)
         ToggleRendering(state)
     end
 })
+
+Rayfield:LoadConfiguration()
+
 
 
 -----------------------------------------
