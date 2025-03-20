@@ -140,13 +140,15 @@ local WalkThroughWallsButton = MainTab:CreateToggle({
 
 -------------------------- Scond low fps --------------------------
 --------------------
--- FPS Boost Toggle Variable
+local RunService = game:GetService("RunService")
+local Lighting = game:GetService("Lighting")
+
 local RenderingDisabled = false
 
--- Function to disable unnecessary elements for max FPS boost
-local function RemoveUnnecessaryInstances()
+-- Function to remove unnecessary rendering elements for performance boost
+local function RemoveLaggyEffects()
     for _, v in pairs(workspace:GetDescendants()) do
-        if v:IsA("Decal") or v:IsA("Texture") or v:IsA("ParticleEmitter") or v:IsA("Trail") then
+        if v:IsA("Decal") or v:IsA("Texture") or v:IsA("ParticleEmitter") or v:IsA("Trail") or v:IsA("Smoke") or v:IsA("Sparkles") then
             v:Destroy() -- Removes textures, particles, and decals
         elseif v:IsA("BasePart") then
             v.Material = Enum.Material.SmoothPlastic -- Optimized material
@@ -157,12 +159,16 @@ end
 
 -- Function to toggle FPS boost
 local function ToggleRendering(state)
+    if state == RenderingDisabled then return end -- Prevent duplicate calls
+
     RenderingDisabled = state
+
     if RenderingDisabled then
         RunService:Set3dRenderingEnabled(false) -- Disable rendering
-        Lighting.GlobalShadows = false -- Disable shadows for FPS gain
-        RemoveUnnecessaryInstances() -- Remove laggy elements
-
+        Lighting.GlobalShadows = false -- Disable shadows for FPS boost
+        RemoveLaggyEffects() -- Remove laggy effects
+        settings().Rendering.QualityLevel = Enum.QualityLevel.Level01 -- Lower render quality
+        
         Rayfield:Notify({
             Title = "FPS Booster",
             Content = "Rendering & Effects Disabled! Maximum FPS Boost Applied.",
@@ -171,6 +177,7 @@ local function ToggleRendering(state)
     else
         RunService:Set3dRenderingEnabled(true) -- Enable rendering
         Lighting.GlobalShadows = true -- Restore shadows
+        settings().Rendering.QualityLevel = Enum.QualityLevel.Automatic -- Restore quality
 
         Rayfield:Notify({
             Title = "FPS Booster",
@@ -180,10 +187,10 @@ local function ToggleRendering(state)
     end
 end
 
--- Create Toggle Button in UI
+-- Add Toggle Button to Your Existing UI
 MainTab:CreateToggle({
     Name = "Enable FPS Boost (Disable Rendering)",
-    Default = false, -- Starts in off mode
+    Default = false,
     Callback = function(state)
         ToggleRendering(state)
     end
