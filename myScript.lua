@@ -103,22 +103,75 @@ local WalkThroughWallsButton = MainTab:CreateToggle({
 
 --------------------------- new code Lower Graphics --------------------
 
+-- -- FPS Boost Toggle Variable
+-- local RunService = game:GetService("RunService") -- Ensure RunService is defined
+-- local RenderingDisabled = false
+
+-- -- Function to toggle rendering
+-- local function ToggleRendering(state)
+--     RenderingDisabled = state
+--     if RenderingDisabled then
+--         RunService:Set3dRenderingEnabled(false) -- Disable rendering
+--         Rayfield:Notify({
+--             Title = "FPS Booster",
+--             Content = "Rendering Disabled! Maximum FPS Boost Applied.",
+--             Duration = 3
+--         })
+--     else
+--         RunService:Set3dRenderingEnabled(true) -- Enable rendering
+--         Rayfield:Notify({
+--             Title = "FPS Booster",
+--             Content = "Rendering Restored! Graphics Back to Normal.",
+--             Duration = 3
+--         })
+--     end
+-- end
+
+-- -- Create Toggle Button in UI
+-- MainTab:CreateToggle({
+--     Name = "Enable FPS Boost (Disable Rendering)",
+--     Default = false, -- Starts in off mode
+--     Callback = function(state)
+--         ToggleRendering(state)
+--     end
+-- })
+
+
+
+-------------------------- Scond low fps --------------------------
+--------------------
 -- FPS Boost Toggle Variable
-local RunService = game:GetService("RunService") -- Ensure RunService is defined
 local RenderingDisabled = false
 
--- Function to toggle rendering
+-- Function to disable unnecessary elements for max FPS boost
+local function RemoveUnnecessaryInstances()
+    for _, v in pairs(workspace:GetDescendants()) do
+        if v:IsA("Decal") or v:IsA("Texture") or v:IsA("ParticleEmitter") or v:IsA("Trail") then
+            v:Destroy() -- Removes textures, particles, and decals
+        elseif v:IsA("BasePart") then
+            v.Material = Enum.Material.SmoothPlastic -- Optimized material
+            v.Reflectance = 0 -- No reflections
+        end
+    end
+end
+
+-- Function to toggle FPS boost
 local function ToggleRendering(state)
     RenderingDisabled = state
     if RenderingDisabled then
         RunService:Set3dRenderingEnabled(false) -- Disable rendering
+        Lighting.GlobalShadows = false -- Disable shadows for FPS gain
+        RemoveUnnecessaryInstances() -- Remove laggy elements
+
         Rayfield:Notify({
             Title = "FPS Booster",
-            Content = "Rendering Disabled! Maximum FPS Boost Applied.",
+            Content = "Rendering & Effects Disabled! Maximum FPS Boost Applied.",
             Duration = 3
         })
     else
         RunService:Set3dRenderingEnabled(true) -- Enable rendering
+        Lighting.GlobalShadows = true -- Restore shadows
+
         Rayfield:Notify({
             Title = "FPS Booster",
             Content = "Rendering Restored! Graphics Back to Normal.",
@@ -135,6 +188,9 @@ MainTab:CreateToggle({
         ToggleRendering(state)
     end
 })
+
+
+-----------------------------------------
 
 -- teleport to spawn and Move Forward
 
