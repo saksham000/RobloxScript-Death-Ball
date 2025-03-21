@@ -164,14 +164,14 @@ local RenderingDisabled = false
 -- Function to toggle FPS Boost
 local function ToggleRendering(state)
     RenderingDisabled = state
-    
+
     if RenderingDisabled then
         -- Disable 3D Rendering
         RunService:Set3dRenderingEnabled(false)
-        
+
         -- Disable Shadows
         Lighting.GlobalShadows = false
-        
+
         -- Disable all ParticleEmitters
         for _, v in ipairs(Workspace:GetDescendants()) do
             if v:IsA("ParticleEmitter") or v:IsA("Beam") or v:IsA("Trail") then
@@ -188,7 +188,7 @@ local function ToggleRendering(state)
         -- Restore Settings
         RunService:Set3dRenderingEnabled(true)
         Lighting.GlobalShadows = true
-        
+
         -- Enable all ParticleEmitters
         for _, v in ipairs(Workspace:GetDescendants()) do
             if v:IsA("ParticleEmitter") or v:IsA("Beam") or v:IsA("Trail") then
