@@ -742,7 +742,7 @@ local following = false
 
 -- ✅ Function to find the ball
 local function getBall()
-    return game.Workspace:FindFirstChild("Part") -- Change "Part" to actual ball name
+    return game.Workspace:FindFirstChild("Part")
 end
 
 -- ✅ Function to follow the ball smoothly
@@ -824,3 +824,87 @@ MainTab:CreateToggle({
         })
     end
 })
+
+
+
+
+-- AUTO HIT BALL
+
+local vim = game:GetService("VirtualInputManager")
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local player = Players.LocalPlayer
+local hitKey = Enum.KeyCode.F
+
+local autoHitEnabled = false
+local hitCooldown = 0.2 -- seconds between hits
+local lastHitTime = 0
+
+local function getBall()
+    return workspace:FindFirstChild("Part") -- Ball is named "Part"
+end
+
+-- Smart Auto-Hit Logic
+local function startSmartAutoHit()
+    local character = player.Character or player.CharacterAdded:Wait()
+    local root = character:WaitForChild("HumanoidRootPart")
+
+    local prevBallPosition = nil
+
+    RunService.RenderStepped:Connect(function()
+        if not autoHitEnabled then return end
+
+        local ball = getBall()
+        if not (ball and root) then return end
+
+        -- Get ball movement direction
+        if not prevBallPosition then
+            prevBallPosition = ball.Position
+            return
+        end
+
+        local ballVelocity = (ball.Position - prevBallPosition) / RunService.RenderStepped:Wait()
+        prevBallPosition = ball.Position
+
+        local directionToPlayer = (root.Position - ball.Position).Unit
+        local ballSpeed = ballVelocity.Magnitude
+        local ballDirection = ballVelocity.Unit
+
+        -- Check if ball is moving TOWARD player
+        local dot = ballDirection:Dot(directionToPlayer)
+        local isComingToward = dot > 0.7 -- > 0.7 means mostly toward you
+
+        local distance = (ball.Position - root.Position).Magnitude
+
+        if isComingToward and distance < 9 and tick() - lastHitTime > hitCooldown then
+            vim:SendKeyEvent(true, hitKey, false, game)
+            vim:SendKeyEvent(false, hitKey, false, game)
+            lastHitTime = tick()
+            print("🎯 Smart Auto-Hit: Ball is coming toward you! Distance:", math.floor(distance))
+        end
+    end)
+end
+
+MainTab:CreateToggle({
+    Name = "🎯 Smart Auto-Hit (Hit only when you’re the target)",
+    CurrentValue = false,
+    Callback = function(state)
+        autoHitEnabled = state
+        if state then
+            startSmartAutoHit()
+            Rayfield:Notify({
+                Title = "Smart Auto-Hit",
+                Content = "Enabled - It will now only hit when you're the target.",
+                Duration = 3
+            })
+        else
+            Rayfield:Notify({
+                Title = "Smart Auto-Hit",
+                Content = "Disabled.",
+                Duration = 2
+            })
+        end
+    end
+})
+
