@@ -3,6 +3,7 @@ development is stoped now(Open For Contributions)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/newredz/BloxFruits/refs/heads/main/Source.luau"))(Settings)
 starting new project
 
+
 --[[
     This script has been licensed using Luarmor
       Luarmor v3.8b, Lua whitelisting system
